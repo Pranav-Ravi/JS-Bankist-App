@@ -63,15 +63,22 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 
 const displayMovements = function(movements) {
+  //sets the existing contents of the container to null
+  containerMovements.innerHTML = '';
+
+  //sets the value of variable type based on the number
   movements.forEach(function(mov, i) {
-    const type = mov>0? 'deposit' : 'withdrawal';
+    const type = mov>0 ? 'deposit' : 'withdrawal';
 
     //create the html element
     const html = `
-    <div class="movements__type 
-    movements__type--${type}">${i+1} ${type}</div>
-    <div class="movements__date">3 days ago</div>
-    <div class="movements__value">${mov}</div>
+      <div class="movements__row">
+        <div class="movements__type 
+        movements__type--${type}">
+        ${i+1} ${type}</div>
+        <div class="movements__date">3 days ago</div>
+        <div class="movements__value">${mov}</div>
+      </div> 
     `;
 
     //add the html element into the webpage
@@ -94,3 +101,30 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+/**********************CODING CHALLENGE***********************/
+const juliaData = [3, 5, 2, 12, 7];
+const kateData = [4, 1, 15, 8 ,3];
+
+const checkdogs = function(dogsJulie, dogsKate) {
+  //remove the unwated elements
+  const dogsJulieCorrected = dogsJulie.slice();
+  dogsJulieCorrected.splice(0, 1);
+  dogsJulieCorrected.splice(-2);
+
+  //array with data from oth Kate and Julia
+  const dogAges = dogsKate.concat(juliaData);
+
+  dogAges.forEach(function(age, i) {
+    //check it's a puppy or dog
+    if(age > 3) {
+      console.log(`Dog number ${i+1} is an adult, and is ${age} years old`);
+    } else {
+      console.log(`Dog number ${i+1} is still a puppy`);
+    }
+  });
+};
+
+checkdogs(juliaData, kateData);
+
+/*****************************************************************/
