@@ -127,4 +127,26 @@ const checkdogs = function(dogsJulie, dogsKate) {
 
 checkdogs(juliaData, kateData);
 
-/*****************************************************************/
+/****************************Functional Programming****************************/
+
+//conversion from euro to usd
+const euroToUsd = 1.1;
+
+//There are two ways to do this,
+// 1. Using functional programming
+const movementsToUsd = movements.map((mov)=> {mov * euroToUsd;});
+console.log(movementsToUsd);
+
+// 2. Using for loops to push the values into a manually created new array
+const movementsToUsd = [];
+for(const mov of movements) movementsToUsd.push(mov * euroToUsd);
+
+const movDescriptions = movements.map((mov, i, arr) => {
+  if(mov > 0) {
+    return `Movement ${i+1}: You Deposited ${mov}`;
+  } else {
+    return `Movement ${i+1}: {You withdrew ${Math.abs(mov)}}`;
+  }
+});
+
+console.log(movDescriptions);
