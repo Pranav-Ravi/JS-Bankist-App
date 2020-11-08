@@ -88,6 +88,18 @@ const displayMovements = function(movements) {
 
 displayMovements(account1.movements);
 
+//Create new username using the first letters in full name
+const createUsernames = function() {
+  const username = user
+  .toLowerCase()
+  .split(' ')
+  .map(name =>
+    name[0]
+  ).join('');
+};
+
+createUsernames('Steven Thomas Williams');
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -141,12 +153,10 @@ console.log(movementsToUsd);
 const movementsToUsd = [];
 for(const mov of movements) movementsToUsd.push(mov * euroToUsd);
 
-const movDescriptions = movements.map((mov, i, arr) => {
-  if(mov > 0) {
-    return `Movement ${i+1}: You Deposited ${mov}`;
-  } else {
-    return `Movement ${i+1}: {You withdrew ${Math.abs(mov)}}`;
-  }
-});
+const movementsDescriptions = movements.map(
+  (mov, i) => 
+  `Movement ${i+1}: You ${mov>0 ? 'deposited' :
+  'withdrew'} ${Math.abs(mov)}`
+);
+console.log(movementsDescriptions);
 
-console.log(movDescriptions);
