@@ -89,16 +89,19 @@ const displayMovements = function(movements) {
 displayMovements(account1.movements);
 
 //Create new username using the first letters in full name
-const createUsernames = function() {
-  const username = user
-  .toLowerCase()
-  .split(' ')
-  .map(name =>
-    name[0]
-  ).join('');
+const createUsernames = function(acc) {
+  acc.forEach(function(acc) {
+    acc.username = acc.owner
+    .toLowerCase()
+    .split(' ')
+    .map(name =>
+      name[0]
+    ).join('');
+  })
 };
 
-createUsernames('Steven Thomas Williams');
+createUsernames(accounts);
+console.log(accounts);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -139,6 +142,14 @@ const checkdogs = function(dogsJulie, dogsKate) {
 
 checkdogs(juliaData, kateData);
 
+
+/*
+  The main difference between map and forEach is that,
+  1. map method creates a new array and returns values
+  2. forEach just alter the same array and doesn't return any values
+*/
+
+
 /****************************Functional Programming****************************/
 
 //conversion from euro to usd
@@ -146,8 +157,8 @@ const euroToUsd = 1.1;
 
 //There are two ways to do this,
 // 1. Using functional programming
-const movementsToUsd = movements.map((mov)=> {mov * euroToUsd;});
-console.log(movementsToUsd);
+/*const movementsToUsd = movements.map((mov)=> {mov * euroToUsd;});
+console.log(movementsToUsd);*/
 
 // 2. Using for loops to push the values into a manually created new array
 const movementsToUsd = [];
@@ -160,3 +171,19 @@ const movementsDescriptions = movements.map(
 );
 console.log(movementsDescriptions);
 
+/*
+  Filter Method selects the elements that passes the condition that is passed
+  in, and create a new array with it.
+*/
+
+////////////Using filter method to find only the deposits/////////////
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(deposits);
+
+////////////Using filter method to find only the withdrawals/////////////
+const withdrawals = movements.filter(function(mov) {
+  return mov < 0;
+});
+console.log(withdrawals);
