@@ -187,3 +187,20 @@ const withdrawals = movements.filter(function(mov) {
   return mov < 0;
 });
 console.log(withdrawals);
+
+/**************REDUCE METHOD**************/
+//It accumulates the value of all elements in an array in to a single value.
+//accumulator -> SNOWBALL
+//It has mainly two parameters, 
+//1. The function that takes accumulator, current, index and array values
+//2. The initial value of the accumulator
+
+const balance = movements.reduce(function(acc, cur) {
+  return acc + cur;
+}, 0); 
+console.log(balance);
+
+//same using the for loop
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
