@@ -99,9 +99,15 @@ const createUsernames = function(acc) {
     ).join('');
   })
 };
-
 createUsernames(accounts);
 console.log(accounts);
+
+const calcDisplayBal = function(movements) {
+  const balance = movements.reduce((acc, mov) => acc
+  + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplayBalance(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
