@@ -210,3 +210,16 @@ console.log(balance);
 let balance2 = 0;
 for (const mov of movements) balance2 += mov;
 console.log(balance2);
+
+
+/*********CODING CHALLENGE********/
+
+const calcAvgHumanAge = function(ages) {
+  const humanAges = ages.map(age => age <= 2 ? 2 * age : 16 + age + 4);
+  const adults = humanAges.filter(age => age >=18);
+  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  return average;
+};
+
+const avg1 = calcAvgHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAvgHumanAge([16, 6, 10, 5, 6, 1, 4]);
