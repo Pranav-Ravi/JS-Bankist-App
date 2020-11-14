@@ -88,6 +88,13 @@ const displayMovements = function(movements) {
 
 displayMovements(account1.movements);
 
+const calDisplaySummary = function(movements) {
+  const incomes = movements
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${income}`;
+};
+
 //Create new username using the first letters in full name
 const createUsernames = function(acc) {
   acc.forEach(function(acc) {
@@ -223,3 +230,11 @@ const calcAvgHumanAge = function(ages) {
 
 const avg1 = calcAvgHumanAge([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = calcAvgHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+/*********CHAINING METHODS*********/
+//Basically using multiple methods in one go.
+//converting euro to usd
+const totalDepositsUSD = movements.filter(mov => mov>0)
+.map(mov => mov*euroToUsd)
+.reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD); 
