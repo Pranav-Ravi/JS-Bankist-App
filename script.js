@@ -48,7 +48,8 @@ const containerApp = document.querySelector('.app');
 const containerMovements = document.querySelector('.movements');
 
 const btnLogin = document.querySelector('.login__btn');
-const btnTransfer = document.querySelector('.form__btn--transfer');
+const btnTransfer = document.querySelector(
+  '.form__btn--transfer');
 const btnLoan = document.querySelector('.form__btn--loan');
 const btnClose = document.querySelector('.form__btn--close');
 const btnSort = document.querySelector('.btn--sort');
@@ -77,7 +78,7 @@ const displayMovements = function(movements) {
         movements__type--${type}">
         ${i+1} ${type}</div>
         <div class="movements__date">3 days ago</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov} €</div>
       </div> 
     `;
 
@@ -88,12 +89,35 @@ const displayMovements = function(movements) {
 
 displayMovements(account1.movements);
 
+const calcDisplayBal = function(movements) {
+  const balance = movements.reduce((acc, mov) => acc
+  + mov, 0);
+  labelBalance.textContent = `${balance} €`;
+};
+calcDisplayBal(account1.movements);
+
 const calDisplaySummary = function(movements) {
   const incomes = movements
   .filter(mov => mov > 0)
   .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${income}`;
+  labelSumIn.textContent = `${incomes}€`;
+
+  const expenses = movements
+  .filter(mov => mov < 0)
+  .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(expenses)}€`;
+
+  const interest = movements
+  .filter(mov => mov > 0)
+  .map(deposit => deposit * 1.2/100)
+  .filter((intr, i, arr) => {
+    console.log(arr);
+    return intr >= 1;
+  })
+  .reduce((acc, intr) => acc + intr);
+  labelSumInterest.textContent = `${interest}€`;
 };
+calDisplaySummary(account1.movements)
 
 //Create new username using the first letters in full name
 const createUsernames = function(acc) {
@@ -108,13 +132,6 @@ const createUsernames = function(acc) {
 };
 createUsernames(accounts);
 console.log(accounts);
-
-const calcDisplayBal = function(movements) {
-  const balance = movements.reduce((acc, mov) => acc
-  + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
-};
-calcDisplayBalance(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
