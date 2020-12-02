@@ -255,3 +255,16 @@ const totalDepositsUSD = movements.filter(mov => mov>0)
 .map(mov => mov*euroToUsd)
 .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD); 
+
+/*****************CODING CHALLENGE 3****************/
+/*
+  Calculate average human age using the chaining method
+*/
+const calcAvgHumanAge = ages => ages
+.map(age <=2 ? 2 * age : 16 + age + 4)
+.filter(age >= 18)
+.reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+const age1 = calcAvgHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const age2 = calcAvgHumanAge([16, 6, 10, 5, 6, 1, 4]);
+console.log(age1, age2);
