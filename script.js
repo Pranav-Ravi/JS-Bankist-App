@@ -133,6 +133,33 @@ const createUsernames = function(acc) {
 createUsernames(accounts);
 console.log(accounts);
 
+/** LOGIN functionality */
+
+let currentAccount;
+
+btnLogin.addEventListener('click', event => {
+  //prevent default submitting
+  event.preventDefault();
+
+  //check whether the username exist in the database
+  currentAccount = accounts.find(acc => 
+    acc.username === inputLoginUsername.value);
+
+  //it it exists, check whether the pin is same as database
+  //authentication
+  if(currentAccount?.pin === Number(inputLoginPin.value)) {
+
+    //Display welcome UI and messages
+
+    //Display movements
+
+    //Display balance
+
+    //Display summary
+  }
+  
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
